@@ -35,5 +35,11 @@ script:
 - cd GCanvas/core/test/linux && mkdir build && cd build && cmake ../ && make
 - cp ../util/font/wqy-microhei.ttc ./  &&   cp ../util/font/.fontcache  ./
 - "./gcanvasTest"
-- cat result.txt | awk '{printf "%-30s| %-18s| %-20s\n",$1,$2,$3}'| column -t 
-
+- cat result.txt | awk '{printf "%-30s| %-18s| %-20s\n",$1,$2,$3}'| column -t
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: "./test.txt"
+  on:
+    repo: luckzhiwei/GCanvas
+    branch: depoly
